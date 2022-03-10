@@ -33,29 +33,26 @@ movieSelect.addEventListener("change", (e) => {
     ticketPrice = +e.target.value;
     
     
-    console.log(filmName.innerText);
-    
     if (e.target.value == 10) {
 
         backGroundImage.setAttribute("style", "background-image: url('./10.jpg'); background-repeat: no-repeat; background-size: cover");
         backGroundContainer.style.backgroundColor = "black"
         console.log(backGroundContainer);
-        filmName.innerText = "Avengers: Endgame"
 
-    } else if (e.target.value == 12) {
+    } 
+    else if (e.target.value == 12) {
         backGroundImage.setAttribute("style", "background-image: url('./12.jpg'); background-repeat: no-repeat; background-size: cover");
-        filmName.innerText = "Joker"
-    } else if (e.target.value == 8) {
+
+    } 
+    else if (e.target.value == 8) {
         backGroundImage.setAttribute("style", "background-image: url('./8.jpg'); background-repeat: no-repeat; background-size: cover; background-position-y: -180px");
         backGroundContainer.style.backgroundColor = "black"
         backGroundShowcase.style.backgroundColor = "black"
-        filmName.innerText = "Toy Story 4"
     }
     else if (e.target.value == 9) {
         backGroundImage.setAttribute("style", "background-image: url('./9.jpg'); background-repeat: no-repeat; background-size: cover; background-position-y: -110px");
         backGroundContainer.style.backgroundColor = ""
         backGroundShowcase.style.backgroundColor = ""
-        filmName.innerText = "The Lion King"
     }
 
     setMovieData(e.target.selectedIndex, e.target.value);
@@ -77,18 +74,21 @@ function updateSelectedCount() {
     const selectedSeatsCount = selectedSeats.length;
     count.innerText = selectedSeatsCount;
     total.innerText = selectedSeatsCount * ticketPrice;
+    film.innerText = movieSelect.options[movieSelect.selectedIndex].innerText.split("(")[0];
 
     setMovieData(movieSelect.selectedIndex, movieSelect.value);
 
 }
 
 function populateUI() {
+
     const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+    console.log(selectedSeats);
   
     if (selectedSeats !== null && selectedSeats.length > 0) {
       seats.forEach((seat, index) => {
         if (selectedSeats.indexOf(index) > -1) {
-          console.log(seat.classList.add("selected"));
+          seat.classList.add("selected");
         }
       });
     }
@@ -96,9 +96,10 @@ function populateUI() {
     const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
   
     if (selectedMovieIndex !== null) {
+
       movieSelect.selectedIndex = selectedMovieIndex;
       console.log(selectedMovieIndex)
     }
   }
-  console.log(populateUI())
 
+  updateSelectedCount();
