@@ -6,6 +6,7 @@ const movieSelect = document.getElementById("movie");
 const backGroundImage = document.querySelector("body")
 const backGroundContainer = document.querySelector(".container")
 const backGroundShowcase = document.querySelector(".showcase")
+const filmName = document.querySelector("#film")
 
 populateUI()
 
@@ -31,23 +32,30 @@ movieSelect.addEventListener("change", (e) => {
 
     ticketPrice = +e.target.value;
     
+    
+    console.log(filmName.innerText);
+    
     if (e.target.value == 10) {
 
         backGroundImage.setAttribute("style", "background-image: url('./10.jpg'); background-repeat: no-repeat; background-size: cover");
         backGroundContainer.style.backgroundColor = "black"
         console.log(backGroundContainer);
+        filmName.innerText = "Avengers: Endgame"
 
     } else if (e.target.value == 12) {
         backGroundImage.setAttribute("style", "background-image: url('./12.jpg'); background-repeat: no-repeat; background-size: cover");
+        filmName.innerText = "Joker"
     } else if (e.target.value == 8) {
         backGroundImage.setAttribute("style", "background-image: url('./8.jpg'); background-repeat: no-repeat; background-size: cover; background-position-y: -180px");
         backGroundContainer.style.backgroundColor = "black"
         backGroundShowcase.style.backgroundColor = "black"
+        filmName.innerText = "Toy Story 4"
     }
     else if (e.target.value == 9) {
         backGroundImage.setAttribute("style", "background-image: url('./9.jpg'); background-repeat: no-repeat; background-size: cover; background-position-y: -110px");
         backGroundContainer.style.backgroundColor = ""
         backGroundShowcase.style.backgroundColor = ""
+        filmName.innerText = "The Lion King"
     }
 
     setMovieData(e.target.selectedIndex, e.target.value);
